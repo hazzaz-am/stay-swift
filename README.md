@@ -1,36 +1,115 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Stay Swift
+
+A modern hotel booking application built with Next.js, React, and TypeScript. Stay Swift allows users to search for hotels, view details, make reservations, and manage bookings across various destinations.
+
+## Features
+
+- **Hotel Search & Discovery**: Browse and search hotels across multiple destinations (Bali, Cox's Bazar, Sylhet, Saint Martin, and more)
+- **Advanced Filtering**: Filter hotels by price range, star rating, and amenities
+- **Hotel Details**: View comprehensive information about each hotel including images, ratings, and reviews
+- **Booking System**: Complete booking flow with check-in/check-out date selection
+- **User Authentication**: Secure login and registration system
+- **Responsive Design**: Fully responsive UI that works on all device sizes
+- **Payment Integration**: Dedicated payment page for completing reservations
+
+## Tech Stack
+
+- **Framework**: [Next.js 14](https://nextjs.org/)
+- **Language**: [TypeScript](https://www.typescriptlang.org/)
+- **UI Library**: [React 18](https://react.dev/)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **Linting**: ESLint with Next.js configuration
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
+- Node.js 18+ installed on your machine
+- npm or yarn package manager
+
+### Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/hazzaz-am/stay-swift
+cd stay-swift
+```
+
+2. Install dependencies:
+```bash
+npm install
+# or
+yarn install
+```
+
+3. Run the development server:
 ```bash
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. Open [http://localhost:3000](http://localhost:3000) in your browser to see the application.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Available Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `npm run dev` - Starts the development server
+- `npm run build` - Creates an optimized production build
+- `npm start` - Runs the production server
+- `npm run lint` - Runs ESLint to check code quality
 
-## Learn More
+## Project Structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+stay-swift/
+  - app/
+    - (auth)/
+      - login/              # Login page
+      - registration/       # Registration page
+    - bookings/             # Bookings management page
+    - hotels/
+      - [hotelId]/          # Dynamic hotel details page
+      - page.tsx            # Hotels listing page
+    - payment/              # Payment page
+    - layout.tsx            # Root layout
+    - page.tsx              # Home page
+    - globals.css           # Global styles
+  - public/
+    - hero-bg.jpg           # Hero background image
+    - images/               # Static images
+  - package.json
+  - tailwind.config.js
+  - tsconfig.json
+  - README.md
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Key Pages
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Home (`/`)**: Landing page with hero section and search functionality
+- **Hotels Listing (`/hotels`)**: Browse all available hotels with filtering options
+- **Hotel Details (`/hotels/[hotelId]`)**: Detailed view of a specific hotel
+- **Bookings (`/bookings`)**: Manage user bookings
+- **Payment (`/payment`)**: Complete payment for reservations
+- **Login (`/login`)**: User authentication
+- **Registration (`/registration`)**: New user signup
 
-## Deploy on Vercel
+## Features in Detail
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Search & Filter
+- Search by destination
+- Date range selection (check-in/check-out)
+- Sort by price (high to low, low to high)
+- Filter by price range ($13 - $182+)
+- Filter by star rating (1-5 stars)
+- Filter by amenities (Wi-Fi, Swimming Pool)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Hotel Information
+- Hotel images
+- Location information
+- Rating scores and reviews count
+- Price per night
+- Room availability
+
+## Support
+
+For support, please open an issue in the repository.
