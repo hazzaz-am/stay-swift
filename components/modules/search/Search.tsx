@@ -1,16 +1,16 @@
-const Search = ({fromList}) => {
+const Search = ({fromList}: {fromList: boolean}) => {
   return (
     <>
       <div className="lg:max-h-[250px] mt-6">
-        <div id="searchParams" className={fromList && "!shadow-none"}>
+        <div id="searchParams" className={fromList ? "!shadow-none" : ""}>
           <div>
             <span>Destination</span>
             <h4 className="mt-2">
               <select name="destination" id="destination">
                 <option value="Bali">Bali</option>
-                <option value="Bali">Cox's Bazar</option>
-                <option value="Bali">Sylhet</option>
-                <option value="Bali">Saint Martin</option>
+                <option value="Cox's Bazar">Cox&apos;s Bazar</option>
+                <option value="Sylhet">Sylhet</option>
+                <option value="Saint Martin">Saint Martin</option>
                 <option value="Bali">Bali</option>
               </select>
             </h4>

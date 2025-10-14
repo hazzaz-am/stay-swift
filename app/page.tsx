@@ -1,4 +1,6 @@
-export default function HomePage() {
+import Search from "@/components/modules/search/Search";
+
+export default function Home() {
 	return (
 		<section className="bg-[#F6F3E9] h-screen max-h-screen relative grid place-items-center bg-[url('/hero-bg.jpg')] bg-cover bg-no-repeat bg-center">
 			<div className="container items-center pb-12 ">
@@ -10,43 +12,7 @@ export default function HomePage() {
 						We have 459 rooms spread throuout Indonesia with room standards
 						equivalent to 5 star hotels.
 					</p>
-
-					<div className="lg:max-h-[250px] mt-6">
-						<div id="searchParams">
-							{/* <!--Location  --> */}
-							<div>
-								<span>Destination</span>
-								<h4 className="mt-2">
-									<select name="destination" id="destination">
-										<option value="Bali">Bali</option>
-										<option value="Cox's Bazar">Cox&apos;s Bazar</option>
-										<option value="Sylhet">Sylhet</option>
-										<option value="Saint Martin">Saint Martin</option>
-										<option value="Bali">Bali</option>
-									</select>
-								</h4>
-							</div>
-
-							{/* <!-- Guests --> */}
-							<div>
-								<span>Check in</span>
-								<h4 className="mt-2">
-									<input type="date" name="checkin" id="checkin" />
-								</h4>
-							</div>
-
-							{/* <!-- Check in --> */}
-							<div>
-								<span>Checkout</span>
-								<h4 className="mt-2">
-									<input type="date" name="checkout" id="checkout" />
-								</h4>
-							</div>
-						</div>
-					</div>
-
-					{/* <!-- Search Button --> */}
-					<button className="search-btn">🔍️ Search</button>
+					<Search />
 				</div>
 			</div>
 		</section>
