@@ -4,11 +4,11 @@ import Image from "next/image";
 
 const SocialLogins = () => {
   const handleGoogleLogin = async() => {
-    await signIn("google", { callbackUrl: "/" });
+    await signIn("google", { callbackUrl: "http://localhost:3000" });
   }
 
   const handleFacebookLogin = async() => {
-    await signIn("facebook", { callbackUrl: "/" });
+    await signIn("facebook", { callbackUrl: "http://localhost:3000" });
   }
   return (
     <>
