@@ -12,13 +12,15 @@ import { UserModel } from "./models/userModel";
 
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
+  pages: {
+    signIn: '/login',
+    error: '/login',
+  },
   session: {
     strategy: 'jwt',
   },
   adapter: MongoDBAdapter(client),
   providers: [Google, Facebook, Credentials({
-    // You can specify which fields should be submitted, by adding keys to the `credentials` object.
-    // e.g. domain, username, password, 2FA token, etc.
     credentials: {
       email: {},
       password: {},
