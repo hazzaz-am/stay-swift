@@ -1,6 +1,13 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose, { Schema, Document, Types } from "mongoose";
 
-const RatingSchema = new Schema({
+export interface IRating extends Document {
+  _id: Types.ObjectId;
+  userId: Types.ObjectId;
+  hotelId: Types.ObjectId;
+  rating: number;
+}
+
+const RatingSchema = new Schema<IRating>({
   userId: {
     type: Schema.Types.ObjectId,
     ref: "UserModel",
@@ -17,4 +24,4 @@ const RatingSchema = new Schema({
   }
 })
 
-export const RatingModel = mongoose.models.ratings ?? mongoose.model("ratings", RatingSchema);
+export const RatingModel = mongoose.models.ratings ?? mongoose.model<IRating>("ratings", RatingSchema);

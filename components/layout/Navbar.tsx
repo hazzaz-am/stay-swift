@@ -18,7 +18,7 @@ const Navbar = async () => {
 
 			<ul>
 				<li>
-					<Link href="/recommended-places">Recommended Places</Link>
+					<Link href="/hotels">Hotels</Link>
 				</li>
 
 				<li>
