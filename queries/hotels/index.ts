@@ -2,7 +2,7 @@ import { BookingModel, IBooking } from "@/models/bookingModel";
 import { HotelModel, IHotel } from "@/models/hotelModel";
 import { RatingModel, IRating } from "@/models/ratingModel";
 import { IReview, ReviewModel } from "@/models/reviewModel";
-import { replaceMongoIdInArray } from "@/utils/replaceMongoId";
+import { replaceMongoIdInArray, replaceMongoIdInObject } from "@/utils/replaceMongoId";
 import { Types } from "mongoose";
 
 
@@ -33,7 +33,32 @@ const getAllHotelsFromDB = async (destination: string, checkIn: string, checkOut
   }
 };
 
-const findBooking = async (hotelId: Types.ObjectId, checkIn: string, checkOut: string) => {
+const getHotelDetailsById = async (hotelId: string, checkIn: string, checkOut: string) => {
+  try {
+    const response = await HotelModel.findOne({ _id: hotelId }).lean<IHotel>();
+    if (!response) {
+      throw Error("Hotel not found");
+    }
+
+    let hotel = response;
+    if (checkIn && checkOut) {
+      const found = await findBooking(hotelId, checkIn, checkOut);
+      if (found) {
+        hotel = {
+          ...hotel,
+          isBooked: found ? true : false
+        } as IHotel;
+
+      }
+    }
+    return replaceMongoIdInObject(hotel);
+  } catch (error) {
+    console.error("Error while fetching hotel details by Id", error);
+    throw error;
+  }
+};
+
+const findBooking = async (hotelId: Types.ObjectId | string, checkIn: string, checkOut: string) => {
   const hotelMatches = await BookingModel.find({ hotelId: hotelId.toString() }).lean<IBooking[]>();
   const found = hotelMatches.find((match) => {
     return checkIn < match.checkOut && checkOut > match.checkIn;
@@ -63,4 +88,4 @@ const getReviewsForAHotel = async (hotelId: string) => {
   }
 };
 
-export { getAllHotelsFromDB, getRatingsForHotel, getReviewsForAHotel };
+export { getAllHotelsFromDB, getRatingsForHotel, getReviewsForAHotel, getHotelDetailsById };

@@ -6,9 +6,21 @@ import Link from "next/link";
 interface IProps {
 	hotelInfo: Partial<IHotel>;
 	fromListPage: boolean;
+	checkIn: string;
+	checkOut: string;
 }
 
-const HotelSummaryInfo = ({ hotelInfo, fromListPage }: IProps) => {
+const HotelSummaryInfo = ({
+	hotelInfo,
+	fromListPage,
+	checkIn,
+	checkOut,
+}: IProps) => {
+	let params = "";
+	if (checkIn && checkOut) {
+		params = `?checkIn=${checkIn}&checkOut=${checkOut}`;
+	}
+
 	return (
 		<>
 			<div className={fromListPage ? "flex-1" : "flex-1 container"}>
@@ -45,7 +57,10 @@ const HotelSummaryInfo = ({ hotelInfo, fromListPage }: IProps) => {
 				</h2>
 				<p className=" text-right">Per Night for 1 Room</p>
 				{fromListPage ? (
-					<Link href={`/hotels/${hotelInfo?.id}`} className="btn-primary ">
+					<Link
+						href={`/hotels/${hotelInfo?.id}?${params}`}
+						className="btn-primary "
+					>
 						Details
 					</Link>
 				) : (

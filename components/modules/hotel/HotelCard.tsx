@@ -4,9 +4,11 @@ import { IHotel } from "@/types/hotels";
 
 interface IProps {
 	hotelInfo: Partial<IHotel>;
+	checkIn: string;
+	checkOut: string;
 }
 
-const HotelCard = ({ hotelInfo }: IProps) => {
+const HotelCard = ({ hotelInfo, checkIn, checkOut }: IProps) => {
 	return (
 		<div className="flex gap-6 border border-gray/20 p-4 rounded-md">
 			<Image
@@ -16,7 +18,12 @@ const HotelCard = ({ hotelInfo }: IProps) => {
 				width={240}
 				height={162}
 			/>
-			<HotelSummaryInfo hotelInfo={hotelInfo} fromListPage={true} />
+			<HotelSummaryInfo
+				hotelInfo={hotelInfo}
+				fromListPage={true}
+				checkIn={checkIn}
+				checkOut={checkOut}
+			/>
 		</div>
 	);
 };

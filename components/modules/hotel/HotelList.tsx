@@ -13,7 +13,7 @@ const HotelList = async ({ destination, checkIn, checkOut }: IProps) => {
 		<div className="col-span-9">
 			<div className="space-y-4">
 				{hotels.map((hotel) => (
-					<HotelCard key={hotel.id} hotelInfo={hotel} />
+					<HotelCard key={hotel.id} hotelInfo={hotel} checkIn={checkIn} checkOut={checkOut} />
 				))}
 			</div>
 		</div>
