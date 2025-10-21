@@ -1,4 +1,4 @@
-import { IHotel } from "@/types/hotels";
+import { IHotel } from "@/models/hotelModel";
 import HotelRating from "./HotelRating";
 import HotelReviewNumber from "./HotelReviewNumber";
 import Link from "next/link";
@@ -17,15 +17,22 @@ const HotelSummaryInfo = ({ hotelInfo, fromListPage }: IProps) => {
 				>
 					{hotelInfo?.name}
 				</h2>
-				<p>📍 {hotelInfo?.city} {hotelInfo?.countryCode}</p>
+				<p>
+					📍 {hotelInfo?.city} {hotelInfo?.countryCode}
+				</p>
 				<div className="flex gap-2 items-center my-4">
 					<HotelRating hotelId={hotelInfo?.id} />
 					<HotelReviewNumber id={hotelInfo?.id} />
 				</div>
-				<div>
+				<div className="flex gap-2 items-center">
 					<span className="bg-yellow-300 p-1 rounded-md">
 						{hotelInfo?.propertyCategory} Star Property
 					</span>
+					{hotelInfo?.isBooked && (
+						<span className="inline-block bg-green-300/45 text-green-600 rounded-md p-1 font-bold">
+							Booked
+						</span>
+					)}
 				</div>
 			</div>
 

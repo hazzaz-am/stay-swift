@@ -16,6 +16,7 @@ export interface IHotel extends Document {
   gallery?: string[];
   overview?: string;
   amenities?: string[];
+  isBooked?: boolean
 }
 
 const HotelSchema = new Schema<IHotel>({

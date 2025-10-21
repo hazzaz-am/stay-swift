@@ -1,8 +1,14 @@
 import { getAllHotelsFromDB } from "@/queries/hotels";
 import HotelCard from "./HotelCard";
 
-const HotelList = async () => {
-	const hotels = await getAllHotelsFromDB();
+interface IProps {
+	destination: string;
+	checkIn: string;
+	checkOut: string;
+}
+
+const HotelList = async ({ destination, checkIn, checkOut }: IProps) => {
+	const hotels = await getAllHotelsFromDB(destination, checkIn, checkOut);
 	return (
 		<div className="col-span-9">
 			<div className="space-y-4">

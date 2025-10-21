@@ -20,6 +20,7 @@ interface IHotel {
   gallery: string[];
   overview: string;
   amenities: string[];
+  isBooked: boolean
 }
 
 
