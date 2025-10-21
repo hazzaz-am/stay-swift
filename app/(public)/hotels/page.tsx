@@ -8,11 +8,12 @@ interface ISearchParams {
 	checkOut: string;
 }
 
-const HotelListPage = ({
-	searchParams: { destination, checkIn, checkOut },
+const HotelListPage = async ({
+	searchParams,
 }: {
-	searchParams: ISearchParams;
+	searchParams: Promise<ISearchParams>;
 }) => {
+	const { destination, checkIn, checkOut } = await searchParams;
 	return (
 		<>
 			<section className="bg-[url('/hero-bg.jpg')] bg-cover bg-no-repeat bg-center pt-[100px] pb-[60px]">

@@ -2,6 +2,7 @@ import { BookingModel, IBooking } from "@/models/bookingModel";
 import { HotelModel, IHotel } from "@/models/hotelModel";
 import { RatingModel, IRating } from "@/models/ratingModel";
 import { IReview, ReviewModel } from "@/models/reviewModel";
+import { IUser, UserModel } from "@/models/userModel";
 import { replaceMongoIdInArray, replaceMongoIdInObject } from "@/utils/replaceMongoId";
 import { Types } from "mongoose";
 
@@ -58,6 +59,16 @@ const getHotelDetailsById = async (hotelId: string, checkIn: string, checkOut: s
   }
 };
 
+const getLoggedInUserByEmail = async (email: string) => {
+  try {
+    const response = await UserModel.find({ email: email }).lean<IUser[]>();
+    return replaceMongoIdInObject(response[0]);
+  } catch (error) {
+    console.error("Error while fetching logged in user", error);
+    throw error;
+  }
+};
+
 const findBooking = async (hotelId: Types.ObjectId | string, checkIn: string, checkOut: string) => {
   const hotelMatches = await BookingModel.find({ hotelId: hotelId.toString() }).lean<IBooking[]>();
   const found = hotelMatches.find((match) => {
@@ -88,4 +99,4 @@ const getReviewsForAHotel = async (hotelId: string) => {
   }
 };
 
-export { getAllHotelsFromDB, getRatingsForHotel, getReviewsForAHotel, getHotelDetailsById };
+export { getAllHotelsFromDB, getRatingsForHotel, getReviewsForAHotel, getHotelDetailsById, getLoggedInUserByEmail };

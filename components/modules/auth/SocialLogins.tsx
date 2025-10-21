@@ -5,11 +5,11 @@ import Link from "next/link";
 
 const SocialLogins = ({ mode = "login" }: { mode: string }) => {
 	const handleGoogleLogin = async () => {
-		await signIn("google", { callbackUrl: "http://localhost:3000", redirect: false });
+		await signIn("google", { callbackUrl: "http://localhost:3000" });
 	};
 
 	const handleFacebookLogin = async () => {
-		await signIn("facebook", { callbackUrl: "http://localhost:3000", redirect: false });
+		await signIn("facebook", { callbackUrl: "http://localhost:3000" });
 	};
 	return (
 		<>

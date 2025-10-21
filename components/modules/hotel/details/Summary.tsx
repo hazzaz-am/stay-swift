@@ -12,7 +12,7 @@ const Summary = ({ hotelInfo, checkIn, checkOut }: IProps) => {
 		<section className="py-4 mt-[100px] ">
 			<div className="flex container">
 				<HotelSummaryInfo
-					fromListPage={true}
+					fromListPage={false}
 					hotelInfo={hotelInfo}
 					checkIn={checkIn}
 					checkOut={checkOut}

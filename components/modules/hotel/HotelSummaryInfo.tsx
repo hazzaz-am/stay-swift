@@ -16,9 +16,10 @@ const HotelSummaryInfo = ({
 	checkIn,
 	checkOut,
 }: IProps) => {
+
 	let params = "";
 	if (checkIn && checkOut) {
-		params = `?checkIn=${checkIn}&checkOut=${checkOut}`;
+		params = `checkIn=${checkIn}&checkOut=${checkOut}`;
 	}
 
 	return (
@@ -64,7 +65,12 @@ const HotelSummaryInfo = ({
 						Details
 					</Link>
 				) : (
-					<button className="btn-primary ">Book</button>
+					<Link
+						href={`/hotels/${hotelInfo?.id}/payment?${params}`}
+						className="btn-primary "
+					>
+						Book
+					</Link>
 				)}
 			</div>
 		</>

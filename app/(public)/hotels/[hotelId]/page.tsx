@@ -12,14 +12,13 @@ interface ISearchParams {
 }
 
 interface IProps {
-	params: IParams;
-	searchParams: ISearchParams;
+	params: Promise<IParams>;
+	searchParams: Promise<ISearchParams>;
 }
 
-const HotelDetailsPage = async ({
-	params: { hotelId },
-	searchParams: { checkIn, checkOut },
-}: IProps) => {
+const HotelDetailsPage = async (props: IProps) => {
+	const { hotelId } = await props.params;
+	const { checkIn, checkOut } = await props.searchParams;
 	const hotelDetails = await getHotelDetailsById(hotelId, checkIn, checkOut);
 
 	return (
