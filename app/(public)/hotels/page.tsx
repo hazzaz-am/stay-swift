@@ -6,14 +6,23 @@ interface ISearchParams {
 	destination: string;
 	checkIn: string;
 	checkOut: string;
+	category: string | undefined;
 }
+
+const refineCategory = (category: string | undefined) => {
+	if (category === undefined) {
+		return "";
+	}
+	const decodedCategory = decodeURI(category);
+	return decodedCategory;
+};
 
 const HotelListPage = async ({
 	searchParams,
 }: {
 	searchParams: Promise<ISearchParams>;
 }) => {
-	const { destination, checkIn, checkOut } = await searchParams;
+	const { destination, checkIn, checkOut, category } = await searchParams;
 	return (
 		<>
 			<section className="bg-[url('/hero-bg.jpg')] bg-cover bg-no-repeat bg-center pt-[100px] pb-[60px]">
@@ -33,6 +42,7 @@ const HotelListPage = async ({
 						destination={destination}
 						checkIn={checkIn}
 						checkOut={checkOut}
+						category={refineCategory(category)}
 					/>
 				</div>
 			</section>

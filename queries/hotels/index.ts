@@ -7,12 +7,21 @@ import { replaceMongoIdInArray, replaceMongoIdInObject } from "@/utils/replaceMo
 import { Types } from "mongoose";
 
 
-const getAllHotelsFromDB = async (destination: string, checkIn: string, checkOut: string) => {
+const getAllHotelsFromDB = async (destination: string, checkIn: string, checkOut: string, category: string) => {
   try {
     const regex = new RegExp(destination, "i");
     const hotelByDestination = await HotelModel.find({ city: { $regex: regex } }).select(["thumbNailUrl", "name", "highRate", "lowRate", "city", "countryCode", "propertyCategory"]).lean<IHotel[]>();
 
     let allHotels: IHotel[] = hotelByDestination;
+
+    if (category) {
+      const categoriesMatch = category.split("|");
+
+      allHotels = allHotels.filter(hotel => {
+        const hotelStar = hotel.propertyCategory!;
+        return categoriesMatch.includes(hotelStar.toString());
+      });
+    }
 
     if (checkIn && checkOut) {
       allHotels = await Promise.all(
