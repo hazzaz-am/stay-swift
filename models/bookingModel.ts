@@ -1,12 +1,14 @@
 import mongoose, { Schema, Types } from "mongoose";
 
-export interface IBooking {
+export interface IBooking extends Document{
   _id: Types.ObjectId;
   userId: Types.ObjectId;
   hotelId: Types.ObjectId;
   checkIn: string;
   checkOut: string;
 }
+
+export type IBookingDoc = Omit<IBooking, "_id"> & { id: string };
 
 const BookingSchema = new Schema<IBooking>({
   userId: {
